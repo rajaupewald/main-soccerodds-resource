@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>再访 · 足球赔率</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: #f3f3f5;
+            color: #2e2e30;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 轻柔的氛围卡 */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 2.8rem 2.2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02), 0 1px 4px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e7e7ed;
+            transition: box-shadow 0.25s ease;
+        }
+
+        .hero-card:hover {
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eaeaeed;
+            border-color: #e5e5eb;
+        }
+
+        .card-soft {
+            background: #fafafc;
+            border: 1px solid #e3e3ea;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+        }
+
+        /* 标题体系 */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: #1f1f23;
+        }
+
+        .subhead {
+            font-size: 1.15rem;
+            color: #5a5a62;
+            font-weight: 400;
+            margin-bottom: 0.35rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+            color: #26262b;
+            border-left: 4px solid #b3b3bd;
+            padding-left: 0.9rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            color: #32323a;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #3a3a40;
+        }
+
+        .signature-line {
+            color: #6d6d79;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 特点列表 圆点修饰 */
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.9rem;
+            color: #35353c;
+            font-weight: 400;
+        }
+
+        .feature-list li::before {
+            content: "·";
+            position: absolute;
+            left: 0.5rem;
+            color: #8f8f9b;
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .inline-link {
+            color: #3d3d4a;
+            text-decoration: none;
+            border-bottom: 1px solid #cbcbd4;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 450;
+        }
+
+        .inline-link:hover {
+            color: #1e1e28;
+            border-bottom-color: #6b6b7a;
+        }
+
+        .btn-like {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid #cdcdd6;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #404048;
+            transition: background 0.2s, border 0.2s;
+            cursor: default;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-like:hover {
+            background: #f0f0f5;
+            border-color: #b5b5c2;
+        }
+
+        .faq-item {
+            margin-bottom: 1.4rem;
+        }
+
+        .faq-question {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+            color: #2d2d33;
+        }
+
+        .faq-answer {
+            color: #4e4e58;
+            padding-left: 0.6rem;
+            border-left: 2px solid #dbdbe3;
+            padding-left: 1rem;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: center;
+            color: #7e7e8a;
+            font-size: 0.9rem;
+            border-top: 1px solid #dddde4;
+            padding-top: 1.8rem;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 540px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .hero-card {
+                padding: 2rem 1.4rem;
+            }
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* 点缀 —— 温柔分割 */
+        .quiet-divider {
+            width: 60px;
+            height: 2px;
+            background: #d4d4de;
+            margin: 1.6rem 0 1.2rem 0;
+        }
+
+        .text-small {
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- hero 区：再次访问 叙述开场 -->
+    <div class="hero-card">
+        <p class="subhead">—— 一次安静的再访</p>
+        <h1>收藏夹里，总有一个位置留给它</h1>
+        <div class="quiet-divider"></div>
+        <p style="font-size: 1.05rem; max-width: 640px;">
+            有些页面你只是路过，有些页面你会存下来，隔段时间再点开。对我来说，
+            <a href="https://main-soccerodds.com" class="inline-link">足球赔率</a>
+            就属于后者。不是因为什么惊天动地的变化，而是它一直稳定地在那里，用简洁的方式呈现着足坛的数值线条。
+        </p>
+        <p class="signature-line">—— 持续关注，不需要理由，习惯就好。</p>
+    </div>
+
+    <!-- 承接段落：从收藏到习惯 -->
+    <div class="card">
+        <h2>从收藏到习惯</h2>
+        <p>
+            第一次打开这个网站时，只是随手搜了一下。后来把它放进书签，再后来每周会看两三次。它没有复杂的图表，也没有密集的推送，就是干净的数字、赛事、以及不同联赛的实时变动。很多关注足坛赔率的朋友，大概都有类似的轨迹：从偶然接触，变成一种安静的日常。
+        </p>
+        <p>
+            收藏夹里的链接越来越多，但真正会反复点开的并不多。<a href="https://main-soccerodds.com" class="inline-link">足球赔率</a> 
+            是其中之一。它像一本常翻的册子，每次打开都带着熟悉的布局，但内容永远是新鲜的。
+        </p>
+        <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1rem;">
+            <span class="btn-like">📁 已收藏 · 持续关注</span>
+        </div>
+    </div>
+
+    <!-- 特点列表：为什么它值得放在收藏夹 -->
+    <div class="card card-soft">
+        <h2>为什么一直留着它</h2>
+        <ul class="feature-list">
+            <li><strong>覆盖联赛足够广</strong> —— 从五大联赛到一些次级赛事，都能找到对应的赔率变化，不用来回切换平台。</li>
+            <li><strong>界面不堆砌</strong> —— 没有弹窗、没有自动播放的视频，信息层级清晰，很快能定位到想看的比赛。</li>
+            <li><strong>更新节奏稳定</strong> —— 赛前几小时到临场，数值变动都会及时反映，适合习惯自己判断的朋友。</li>
+            <li><strong>无账号强制</strong> —— 直接打开就能浏览，不需要注册或登录，少了一层门槛。</li>
+        </ul>
+        <p class="text-small" style="color: #5f5f6b; margin-top: 0.5rem;">
+            这些细节单独看似乎平常，但凑在一起，就是让人愿意反复回来的理由。
+        </p>
+    </div>
+
+    <!-- 场景与提示：什么时候会用到它 -->
+    <div class="card">
+        <h2>几个常用的时刻</h2>
+        <p>
+            周末的傍晚，打开几场关注的比赛，看看赔率走势和一周前有什么不同；或者工作日的午休，快速扫一眼凌晨结束的赛事之后，赔率是如何回调的。没有固定的使用模板，全凭个人习惯。如果你也常常浏览各类赔率信息，或许会发现这个网站的风格恰好适合「想看就看，看完就关」的节奏。
+        </p>
+        <p>
+            不知不觉，它已经成了手机浏览器里常驻的标签页之一。偶尔清理书签时看到它，也不会犹豫，直接保留。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 克制平实 -->
+    <div class="card card-soft">
+        <h2>一些常见的小问题</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">这个网站需要注册吗？</div>
+            <div class="faq-answer">不需要。直接打开就可以查看所有公开的赔率信息，没有会员或登录限制。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">它主要提供哪些联赛的数据？</div>
+            <div class="faq-answer">包括欧洲主要联赛以及部分亚洲、南美赛事，具体范围可以在页面顶部的导航栏看到。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">数据多久更新一次？</div>
+            <div class="faq-answer">实时性比较好，重点比赛赛前和赛中的变化基本是分钟级更新。不过不同联赛的更新频率会略有差异。</div>
+        </div>
+        <p class="text-small" style="margin-top: 0.6rem; color: #5c5c67;">
+            —— 更多细节，只有在持续使用中才会慢慢注意到。
+        </p>
+    </div>
+
+    <!-- 温和结尾 再次点出链接 -->
+    <div class="hero-card" style="text-align: center; padding: 2rem 2.2rem;">
+        <p style="font-size: 1.1rem; max-width: 520px; margin: 0 auto 0.6rem auto;">
+            如果你也想找一个可以长期放在收藏夹里的赔率页面，不妨试试 
+            <a href="https://main-soccerodds.com" class="inline-link" style="font-weight: 450;">足球赔率</a>。
+        </p>
+        <p class="text-small" style="color: #71717d; margin-top: 0.8rem;">
+            不用特地记住，有空的时候点开就好。
+        </p>
+        <div class="quiet-divider" style="margin: 1.2rem auto 0.4rem auto;"></div>
+        <p class="text-small" style="color: #7d7d89; letter-spacing: 0.02em;">
+            感谢阅读 · 保持关注
+        </p>
+    </div>
+
+    <div class="footer-note">
+        页面内容仅代表个人使用感受 · 数据以实际网站为准
+    </div>
+
+</div>
+
+</body>
+</html>
